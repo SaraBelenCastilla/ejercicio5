@@ -1,0 +1,589 @@
+
+/* Reseteamos los margin y paddings de todas las etiquetas */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    vertical-align: baseline;
+  }
+  
+  /* Evitamos problemas con las imagenes */
+  img, picture, video, iframe, figure {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    /* opcional */
+    -o-object-fit: cover;
+       object-fit: cover;
+    /* opcional */
+    -o-object-position: center center;
+       object-position: center center;
+  }
+  
+  /* Reseteamos los enlaces para funcionar como cajas... */
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+  }
+  
+  /* ... excepto los que se encuentran en párrafos */
+  p a {
+    display: inline;
+  }
+  
+  /* Quitamos los puntos de los <li> */
+  li {
+    list-style-type: none;
+  }
+  
+  /* Configuramos anclas suaves */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Desactivamos estilos por defecto de las principales etiquetas de texto */
+  h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
+    font-size: 1em;
+    font-weight: inherit;
+    font-style: inherit;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Evitamos problemas con los pseudoelementos de quotes */
+  blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+    content: none;
+  }
+  
+  /* Configuramos el texto que seleccionamos */
+  ::-moz-selection {
+    background-color: var(--negro);
+    color: var(--blanco);
+  }
+  ::selection {
+    background-color: var(--negro);
+    color: var(--blanco);
+  }
+  
+  /* Nivelamos problemas de tipografías y colocación de formularios */
+  form, input, textarea, select, button, label {
+    font-family: inherit;
+    font-size: inherit;
+    -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
+    background-color: transparent;
+    color: inherit;
+    display: block;
+    /* opcional */
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+  }
+  
+  /* Reseteamos las tablas */
+  table, tr, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  /* Evitamos problemas con los SVG */
+  svg {
+    width: 100%;
+    display: block;
+    fill: currentColor;
+  }
+  
+  /* (Probándolo, no usar en producción) En el caso de añadir una  */
+  /* p svg{
+    display: inline;
+    width: initial;
+  } */
+  /* Configuramos la tipografía para toda la web */
+  body {
+    height: 100vh;
+    font-size: 100%;
+    font-family: var(--tipo-principal);
+    color: var(--negro);
+    /* opcional */
+    line-height: 1.4em;
+    /* opcional */
+    -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
+    /* opcional */
+    font-smooth: always;
+    /* opcional */
+    -webkit-font-smoothing: antialiased;
+    /* opcional */
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+.Cabecera{
+  background-color: black; 
+  width: 100%;
+  padding:2em 4em; 
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  z-index: 1;
+}
+
+.Cabecera__h1{
+font-size: 2em;
+}
+
+.Cabecera__boton{
+    cursor: pointer;
+}
+.Cabecera__nav{
+
+width:100%;
+display: flex;
+flex-flow: column nowrap;
+justify-content:space-around  ;
+align-items: start;
+height: 0vh;
+opacity: 0;
+overflow: hidden;
+z-index: 1;
+transition: all 2s ease;
+}
+
+
+.Cabecera__nav.isActive{
+   
+    height: 100vh;
+    opacity: 1;
+}
+
+.Cabecera__ul{
+  
+display: flex;
+flex-flow: column nowrap;
+justify-content: space-around;
+align-items: start;
+}
+.Cabecera__li{
+margin: 2em 0;
+font-size: 2em;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+cursor: pointer;
+}
+.Cabecera__icon{
+    font-size: 2.7em;
+    color: white;
+   
+}
+/* ---------menu desplegable------- */
+
+.desplegable{
+  display: none;
+  flex-flow: column nowrap;
+justify-content:space-around  ;
+align-items: start;
+gap: 20px;
+opacity: 0;
+transition: all 2s ease;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-size: 1.5em;
+color: rgba(255, 255, 255, .5);
+
+}
+.desplegable.actv{
+ opacity: 1;
+  display: flex;
+
+}
+.desplegable__li{
+  cursor: pointer;
+}
+.desplegable__li:hover{
+  color: white;
+}
+.cabecera__foto{
+  display: none;
+  position: absolute;
+  left: 40%;
+  bottom: 20%;
+  overflow: hidden;
+  animation: 2.5s aparecer;
+  opacity: 0;
+  transition: all 2s ease;
+  z-index: 1;
+}
+@keyframes aparecer {
+  from{
+  bottom: 0;
+  opacity: 0;
+  }
+  to{
+  bottom: 20%;
+  opacity: 1;
+  }
+}
+.cabecera__foto.on{
+display: block;
+opacity: 1;
+}
+/* ---------------APP--------------- */
+main{
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8em 4em;
+  z-index: -1;
+}
+.main__div{
+  
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5%;
+}
+.main__contenido{
+ 
+  position: absolute;
+  bottom: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  z-index: -1;
+  
+}
+.contenido__datos{
+  display: flex;
+  flex-direction: column;
+ gap: 50px;
+ z-index: -1;
+}
+.h3__main{
+  margin-top: 10%;
+  background-color: black;
+  color: white;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  padding: 1em;
+}
+.main__abajo{
+  
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items:center;
+  gap: 100px;
+  background-color:rgba(255, 255, 255, .2);
+  border-top: 1px solid grey;
+  padding-top: 20px;
+  cursor: pointer;
+}
+.main__boton:focus{
+font-weight: 900;
+}
+.main__foto{
+  width: 35rem;
+  
+  z-index: -1;
+}
+.main__p{
+  width: 30%;
+}
+.main__h2{
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+.main__contenido:nth-child(1){
+ display: none;
+ position: absolute;
+ 
+ overflow: hidden;
+ animation: 3s entrar;
+ opacity: 0;
+ transition: all 2s ease;
+ z-index: -1;
+}
+@keyframes entrar {
+ from{
+ bottom: 0;
+ opacity: 0;
+ }
+ to{
+ bottom: 20%;
+ opacity: 1;
+ }
+}
+.main__contenido:nth-child(2){
+ display: none;
+ position: absolute;
+ 
+ overflow: hidden;
+ animation: 3s entrar;
+ opacity: 0;
+ transition: all 2s ease;
+ z-index: -1;
+}
+@keyframes entrar {
+ from{
+ bottom: 0;
+ opacity: 0;
+ }
+ to{
+ bottom: 20%;
+ opacity: 1;
+ }
+}
+.main__contenido:nth-child(1).isactive{
+ display: flex;
+  opacity: 1;
+ 
+}
+.main__contenido:nth-child(2).on{
+ display: flex;
+  opacity: 1;
+}
+
+@media screen and (min-width:1600px) and (max-width: 1900px)  {
+  .main__contenido{
+    bottom: 10%;
+  }
+  @keyframes entrar {
+    from{
+    bottom: 0;
+    opacity: 0;
+    }
+    to{
+    bottom: 10%;
+    opacity: 1;
+    }
+  }
+  .main__p{
+    width: 50%;
+  }
+  
+  }
+
+
+
+@media screen and (min-width:1400px) and (max-width: 1600px)  {
+  .main__contenido{
+    bottom: 15%;
+  }
+  @keyframes entrar {
+    from{
+    bottom: 0;
+    opacity: 0;
+    }
+    to{
+    bottom: 15%;
+    opacity: 1;
+    }
+  }
+  .main__p{
+    width: 50%;
+  }
+  
+  }
+@media screen and (min-width:1200px) and (max-width: 1400px)  {
+  .main__contenido{
+    bottom: 40%;
+  }
+  @keyframes entrar {
+    from{
+    bottom: 0;
+    opacity: 0;
+    }
+    to{
+    bottom: 40%;
+    opacity: 1;
+    }
+  }
+  .main__p{
+    width: 50%;
+  }
+  
+  }
+  @media (max-width:1024px) {
+    .main__contenido{
+      bottom: 15%;
+    }
+    @keyframes entrar {
+      from{
+      bottom: 0;
+      opacity: 0;
+      }
+      to{
+      bottom: 15%;
+      opacity: 1;
+      }
+    }
+.main__p{
+  width: 50%;
+}
+    
+    }
+    @media screen and (min-width:1200px) and (max-width: 1400px)  {
+      .main__contenido{
+        bottom: 40%;
+      }
+      @keyframes entrar {
+        from{
+        bottom: 0;
+        opacity: 0;
+        }
+        to{
+        bottom: 40%;
+        opacity: 1;
+        }
+      }
+      .main__p{
+        width: 50%;
+      }
+      
+      }
+      @media screen and (min-width:900px) and (max-width: 1200px) {
+        .main__contenido{
+          bottom: 50%;
+        }
+        @keyframes entrar {
+          from{
+          bottom: 0;
+          opacity: 0;
+          }
+          to{
+          bottom: 50%;
+          opacity: 1;
+          }
+        }
+    .main__p{
+      width: 55%;
+    }
+        
+        }
+        @media screen and (min-width:700px) and (max-width: 900px) {
+          .main__contenido{
+            bottom: 60%;
+          }
+          @keyframes entrar {
+            from{
+            bottom: 0;
+            opacity: 0;
+            }
+            to{
+            bottom: 60%;
+            opacity: 1;
+            }
+          }
+      .main__p{
+        width: 70%;
+      }
+          
+          }
+          @media screen and (min-width:400px) and (max-width: 700px) {
+            .main__contenido{
+              bottom: 35%;
+              flex-direction: column;
+              gap: 100px;
+              
+            }
+            @keyframes entrar {
+              from{
+              bottom: 0;
+              opacity: 0;
+              }
+              to{
+              bottom: 35%;
+              opacity: 1;
+              }
+            }
+        .main__p{
+          display: none;
+        }
+        .h3__main{
+          display: none;
+        }
+        .main__foto{
+          width: 200px;
+        }
+        .Cabecera__li{
+          font-size: 1.3em;
+        }
+        .cabecera__foto{
+          width: 200px;
+          left: 50%;
+          bottom: 30%;
+        }
+        @keyframes aparecer {
+          from{
+          bottom: 0;
+          opacity: 0;
+          }
+          to{
+          bottom: 30%;
+          opacity: 1;
+          }
+        }
+            
+            }
+            @media screen and (max-width: 400px) {
+              .main__contenido{
+                bottom: 20%;
+                flex-direction: column;
+                gap: 100px;
+                
+              }
+              @keyframes entrar {
+                from{
+                bottom: 0;
+                opacity: 0;
+                }
+                to{
+                bottom: 20%;
+                opacity: 1;
+                }
+              }
+          .main__p{
+            display: none;
+          }
+          .h3__main{
+            display: none;
+          }
+          .main__foto{
+            width: 200px;
+          }
+          .Cabecera__li{
+            font-size: 1.3em;
+          }
+          .cabecera__foto{
+            width: 200px;
+            left: 50%;
+            bottom: 30%;
+          }
+          @keyframes aparecer {
+            from{
+            bottom: 0;
+            opacity: 0;
+            }
+            to{
+            bottom: 30%;
+            opacity: 1;
+            }
+          }
+          .main__abajo{
+            gap: 20px;
+          }
+          .cabecera__foto{
+            width: 150px;
+          }
+              
+              }
